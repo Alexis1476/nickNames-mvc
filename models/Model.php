@@ -20,12 +20,47 @@ abstract class Model
     private static function setDb()
     {
         $dataConfig = self::getDbConfig();
-        self::$_connector = new PDO(
-            'mysql:host=' . $dataConfig['host'] .
-            ';dbname=' . $dataConfig['dbName'] .
-            ';charset=' . $dataConfig['charset'],
-            $dataConfig['user'],
-            $dataConfig['password']
-        );
+        try {
+            self::$_connector = new PDO(
+                'mysql:host=' . $dataConfig['host'] .
+                ';dbname=' . $dataConfig['dbName'] .
+                ';charset=' . $dataConfig['charset'],
+                $dataConfig['user'],
+                $dataConfig['password']
+            );
+        } catch (PDOException $e) {
+            die('Erreur : ' . $e->getMessage());
+        }
+    }
+
+    protected function getDb()
+    {
+        // Si la connexion n'est pas instanciée
+        self::$_connector ?: self::setDb();
+        return self::$_connector;
+    }
+
+    protected function querySimpleExecute($query)
+    {
+        return $this->getDb()->query($query);
+    }
+
+    protected function queryPrepareExecute($query, $binds)
+    {
+        $req = $this->getDb()->prepare($query);
+        foreach ($binds as $key => $element) {
+            $req->bindValue($key, $element['value'], $element['type']);
+        }
+        $req->execute();
+
+        return $req;
+    }
+    protected function formatData($req)
+    {
+        // TODO
+    }
+    protected function unsetData($req)
+    {
+        $req->closeCursor();
     }
 }
