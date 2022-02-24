@@ -55,10 +55,16 @@ abstract class Model
 
         return $req;
     }
+
     protected function formatData($req)
     {
-        // TODO
+        if ($req->rowCount() == 1) {
+            return $req->fetch(PDO::FETCH_ASSOC);
+        } else {
+            return $req->fetchAll(PDO::FETCH_ASSOC);
+        }
     }
+
     protected function unsetData($req)
     {
         $req->closeCursor();
