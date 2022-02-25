@@ -1,4 +1,5 @@
 <?php
+require_once 'public/views/View.php';
 
 class ControllerHome
 {
@@ -15,6 +16,7 @@ class ControllerHome
         $this->_teacherModel = new TeacherModel();
         $teachers = $this->_teacherModel->getAllTeachers();
 
-        require_once 'public/views/viewHome.php';
+        $this->_view = new View('Home');
+        $this->_view->displayView(['teachers' => $teachers]);
     }
 }
