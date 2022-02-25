@@ -5,9 +5,9 @@ class View
     private $_file;
     private $_title;
 
-    public function __construct($action)
+    public function __construct($viewName)
     {
-        $this->_file = 'public/views/view' . $action . '.php';
+        $this->_file = 'public/views/view' . $viewName . '.php';
     }
 
     public function displayView($data)
