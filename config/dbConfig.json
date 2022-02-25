@@ -1,0 +1,6 @@
+{
+  "host": "localhost",
+  "user": "dbNicknameUser",
+  "dbName": "db_nickname",
+  "charset": "utf8"
+}
