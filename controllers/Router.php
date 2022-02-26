@@ -21,7 +21,7 @@ class Router
                 $url = explode('/', filter_var($_GET['url'], FILTER_SANITIZE_URL));
 
                 $controller = ucfirst(strtolower($url[0]));
-                $controllerClass = "Controller" . $controller;
+                $controllerClass = $controller . "Controller";
                 $controllerFile = "controllers/" . $controllerClass . '.php';
 
                 if (file_exists($controllerFile)) {
@@ -32,8 +32,8 @@ class Router
                 }
             } // S'il n'y a pas de paramètres dans l'url
             else {
-                require_once('controllers/ControllerHome.php');
-                $this->_controller = new ControllerHome($url);
+                require_once('controllers/HomeController.php');
+                $this->_controller = new HomeController($url);
             }
         } catch (Exception $e) {
             $errorMsg = $e->getMessage();

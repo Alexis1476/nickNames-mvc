@@ -1,7 +1,7 @@
 <?php
 require_once 'public/views/View.php';
 
-class ControllerHome
+class HomeController
 {
     private $_teacherModel;
     private $_view;
