@@ -5,7 +5,7 @@
         <th>Nom</th>
         <th>Surnom</th>
         <th>Options</th>
-        <?= "" // CurrentUser condition        ?>
+        <!--Current user condition-->
     </tr>
     </thead>
     <tbody>
