@@ -12,7 +12,9 @@
     <h1>Surnom des enseignants</h1>
     <nav><h3>Zone pour le menu</h3></nav>
 </header>
-<?= $content ?>
+<div class="container">
+    <?= $content ?>
+</div>
 <footer>
     <p>Copyright Alexis Rojas - 2022</p>
 </footer>

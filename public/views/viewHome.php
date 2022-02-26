@@ -22,7 +22,7 @@
                 <a href="#">
                     <img height="20em" src="./public/resources/img/delete.png" alt="delete">
                 </a>
-                <a href="#">
+                <a href="./">
                     <img height="20em" src="./public/resources/img/detail.png" alt="detail">
                 </a>
             </td>
