@@ -19,7 +19,7 @@ class TeacherController
 
     public function checkGenderToRadioBtn($teacher, $gender)
     {
-        return !isset($teacher) ? "" : ($teacher['teaGender'] == $gender ? "checked" : "");
+        return $teacher['teaGender'] == $gender ? "checked" : "";
     }
 
     private function teacherList()
