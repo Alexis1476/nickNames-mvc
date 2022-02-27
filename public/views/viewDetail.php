@@ -4,9 +4,9 @@
     </h3>
     <p> <?= $teacher['secName'] ?> </p>
     <div class="actions">
-        <a href="edit.php?idTeacher=<?= $teacher['idTeacher'] ?>">
+        <a href="index.php?controller=teacher&action=edit&idTeacher=<?= $teacher['idTeacher'] ?>">
             <img height="20em" src="./public/resources/img/edit.png" alt="edit icon"></a>
-        <a href="delete.php?idTeacher=<?= $teacher['idTeacher'] ?>">
+        <a href="index.php?controller=teacher&action=delete&idTeacher=<?= $teacher['idTeacher'] ?>">
             <img height="20em" src="./public/resources/img/delete.png" alt="delete icon"> </a>
     </div>
 </div>
