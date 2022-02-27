@@ -7,7 +7,13 @@ class TeacherController
 
     public function __construct()
     {
-        $action = 'teacher' . ucfirst(strtolower($_GET['action']));
+        $action = 'teacher';
+        if (isset($_GET['action'])) {
+            $action .= ucfirst(strtolower($_GET['action']));
+        } else {
+            $action .= 'List';
+        }
+
         $this->$action();
     }
 
@@ -18,6 +24,16 @@ class TeacherController
 
         $this->_view = new View('Home');
         $this->_view->displayView(['teachers' => $teachers]);
+    }
+
+    private function teacherEdit()
+    {
+        $this->_teacherModel = new TeacherModel();
+        $teacher = $this->_teacherModel->getOneTeacher($_GET['idTeacher']);
+
+
+        $this->_view = new View('Edit');
+        $this->_view->displayView(['teacher' => $teacher]);
     }
 
     private function checkGender($teacher)
@@ -32,11 +48,6 @@ class TeacherController
         return $genre;
     }
 
-    private function teacherEdit()
-    {
-        // TODO
-        echo "teacherEdit";
-    }
 
     private function teacherDelete()
     {
