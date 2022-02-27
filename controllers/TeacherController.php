@@ -17,12 +17,17 @@ class TeacherController
         $this->$action();
     }
 
+    public function checkGenderToRadioBtn($teacher, $gender)
+    {
+        return !isset($teacher) ? "" : ($teacher['teaGender'] == $gender ? "checked" : "");
+    }
+
     private function teacherList()
     {
         $this->_teacherModel = new TeacherModel();
         $teachers = $this->_teacherModel->getAllTeachers();
 
-        $this->_view = new View('Home');
+        $this->_view = new View('Home', $this);
         $this->_view->displayView(['teachers' => $teachers]);
     }
 
@@ -32,11 +37,11 @@ class TeacherController
         $teacher = $this->_teacherModel->getOneTeacher($_GET['idTeacher']);
         $sections = SectionModel::getAllSections();
 
-        $this->_view = new View('Edit');
+        $this->_view = new View('Edit', $this);
         $this->_view->displayView(['teacher' => $teacher, 'sections' => $sections]);
     }
 
-    private function checkGender($teacher)
+    private function defineGenderImage($teacher)
     {
         if ($teacher['teaGender'] == 'M') {
             $genre = "male";
@@ -58,9 +63,9 @@ class TeacherController
     {
         $this->_teacherModel = new TeacherModel();
         $teacher = $this->_teacherModel->getOneTeacher($_GET['idTeacher']);
-        $genre = $this->checkGender($teacher);
+        $genre = $this->defineGenderImage($teacher);
 
-        $this->_view = new View('Detail');
+        $this->_view = new View('Detail', $this);
         $this->_view->displayView(['teacher' => $teacher, 'genre' => $genre]);
     }
 }
