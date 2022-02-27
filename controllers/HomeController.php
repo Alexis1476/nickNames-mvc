@@ -6,7 +6,7 @@ class HomeController
     private $_teacherModel;
     private $_view;
 
-    public function __construct($url)
+    public function __construct()
     {
         $this->teachers();
     }

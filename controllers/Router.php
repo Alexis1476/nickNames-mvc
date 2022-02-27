@@ -14,26 +14,22 @@ class Router
                 require_once('models/' . $class . '.php');
             });
 
-            $url = '';
-
             // Inclure le controller selon l'action
-            if (isset($_GET['url'])) {
-                $url = explode('/', filter_var($_GET['url'], FILTER_SANITIZE_URL));
-
-                $controller = ucfirst(strtolower($url[0]));
+            if (isset($_GET['controller'])) {
+                $controller = ucfirst(strtolower($_GET['controller']));
                 $controllerClass = $controller . "Controller";
                 $controllerFile = "controllers/" . $controllerClass . '.php';
 
                 if (file_exists($controllerFile)) {
                     require_once($controllerFile);
-                    $this->_controller = new $controllerClass($url);
+                    $this->_controller = new $controllerClass();
                 } else {
                     throw new Exception('Page introuvable');
                 }
             } // S'il n'y a pas de paramètres dans l'url
             else {
                 require_once('controllers/HomeController.php');
-                $this->_controller = new HomeController($url);
+                $this->_controller = new HomeController();
             }
         } catch (Exception $e) {
             $errorMsg = $e->getMessage();
@@ -41,5 +37,4 @@ class Router
             $this->_view->displayView(['errorMsg' => $errorMsg]);
         }
     }
-
 }
