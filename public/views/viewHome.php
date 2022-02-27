@@ -16,13 +16,13 @@
             <td><?= $teacher['teaNickname'] ?></td>
             <!-- If is admin -->
             <td class="containerOptions">
-                <a href="#">
+                <a href="index.php?controller=teacher&action=edit&idTeacher=<?= $teacher['idTeacher'] ?>">
                     <img height="20em" src="./public/resources/img/edit.png" alt="edit">
                 </a>
-                <a href="#">
+                <a href="index.php?controller=teacher&action=delete&idTeacher=<?= $teacher['idTeacher'] ?>">
                     <img height="20em" src="./public/resources/img/delete.png" alt="delete">
                 </a>
-                <a href="./">
+                <a href="index.php?controller=teacher&action=detail&idTeacher=<?= $teacher['idTeacher'] ?>">
                     <img height="20em" src="./public/resources/img/detail.png" alt="detail">
                 </a>
             </td>
