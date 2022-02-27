@@ -1,3 +1,4 @@
+<?php $this->_title = "Liste des enseignants"; ?>
 <div class="user-body">
     <form action="#" method="post">
         <h3>Ajout d'un enseignant</h3>

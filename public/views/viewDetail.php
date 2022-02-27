@@ -1,4 +1,6 @@
+<?php $this->_title = "Liste des enseignants"; ?>
 <div class="user-head">
+    <p><?= var_dump($this); ?></p>
     <h3>Détail : <?= $teacher['teaFirstname'] . ' ' . $teacher['teaName'] ?>
         <img style="margin-left: 1vw;" height="20em" src="./public/resources/img/<?= $genre ?>.png" alt="male symbole">
     </h3>
