@@ -30,10 +30,10 @@ class TeacherController
     {
         $this->_teacherModel = new TeacherModel();
         $teacher = $this->_teacherModel->getOneTeacher($_GET['idTeacher']);
-
+        $sections = SectionModel::getAllSections();
 
         $this->_view = new View('Edit');
-        $this->_view->displayView(['teacher' => $teacher]);
+        $this->_view->displayView(['teacher' => $teacher, 'sections' => $sections]);
     }
 
     private function checkGender($teacher)
