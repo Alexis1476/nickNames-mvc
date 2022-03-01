@@ -33,7 +33,7 @@ class Router
             }
         } catch (Exception $e) {
             $errorMsg = $e->getMessage();
-            $this->_view = new View('Error');
+            $this->_view = new View('Error', null);
             $this->_view->displayView(['errorMsg' => $errorMsg]);
         }
     }
