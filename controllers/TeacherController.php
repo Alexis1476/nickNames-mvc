@@ -22,6 +22,29 @@ class TeacherController
         return $teacher['teaGender'] == $gender ? "checked" : "";
     }
 
+    private function teacherSubmitAdd()
+    {
+        $errors = $this->checkFormData();
+        if (!$errors) {
+            $this->_teacherModel = new TeacherModel();
+            $this->_teacherModel->insertTeacher($_POST);
+            header('Location: index.php');
+        } else {
+            foreach ($errors as $error) {
+                echo "<pre>$error</pre>";
+            }
+            echo "<a href=\"index.php\">Retour en arrière</a>";
+        }
+    }
+
+    private function teacherAdd()
+    {
+        $sections = SectionModel::getAllSections();
+
+        $this->_view = new View('AddTeacher', $this);
+        $this->_view->displayView(['sections' => $sections]);
+    }
+
     private function teacherList()
     {
         $this->_teacherModel = new TeacherModel();
