@@ -31,6 +31,11 @@ class TeacherController
         $this->_view->displayView(['teachers' => $teachers]);
     }
 
+    private function teacherSubmitEdit()
+    {
+        echo "Submit";
+    }
+
     private function teacherEdit()
     {
         $this->_teacherModel = new TeacherModel();
@@ -53,10 +58,12 @@ class TeacherController
         return $genre;
     }
 
-
     private function teacherDelete()
     {
-        // TODO
+        $this->_teacherModel = new TeacherModel();
+        $this->_teacherModel->deleteTeacher($_GET['idTeacher']);
+
+        header('Location: index.php');
     }
 
     private function teacherDetail()
