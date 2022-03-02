@@ -24,7 +24,6 @@ class View
     public function displayView($data)
     {
         $content = $this->generateFile($this->_file, $data);
-
         $view = $this->generateFile("public/views/template.php", ['title' => $this->_title, 'content' => $content]);
 
         echo $view;
@@ -41,7 +40,7 @@ class View
 
             return ob_get_clean();
         } else {
-            throw new Exception('Fichier ' . $file . ' introuvable');
+            return new Exception('Fichier ' . $file . ' introuvable');
         }
     }
 }
