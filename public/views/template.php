@@ -10,7 +10,11 @@
 <body>
 <header>
     <h1>Surnom des enseignants</h1>
-    <nav><h3>Zone pour le menu</h3></nav>
+    <nav>
+        <h3>Zone pour le menu</h3>
+        <a href="index.php">Accueil</a>
+        <a href="index.php?controller=teacher&action=add">Ajouter un enseignant</a>
+    </nav>
 </header>
 <div class="container">
     <?= $content ?>
