@@ -33,7 +33,44 @@ class TeacherController
 
     private function teacherSubmitEdit()
     {
-        echo "Submit";
+        $errors = $this->checkFormData();
+        if (!$errors) {
+            $this->_teacherModel = new TeacherModel();
+            $this->_teacherModel->modifyTeacher($_POST);
+            header('Location: index.php');
+        } else {
+            foreach ($errors as $error) {
+                echo "<pre>$error</pre>";
+            }
+            $idTeacher = $_GET['idTeacher'];
+            echo "<a href=\"index.php?controller=teacher&action=edit&idTeacher=$idTeacher\">Retour en arrière</a>";
+        }
+    }
+
+    private function checkFormData()
+    {
+        $errors = [];
+
+        if (!$_POST['genre']) {
+            $errors['genre'] = "Sélectionnez un genre";
+        }
+        if (!$_POST['firstName']) {
+            $errors['firstName'] = "Écrivez votre prénom";
+        }
+        if (!$_POST['name']) {
+            $errors['name'] = "Écrivez votre nom";
+        }
+        if (!$_POST['nickName']) {
+            $errors['nickName'] = "Écrivez votre nickname";
+        }
+        if (!$_POST['origin']) {
+            $errors['origin'] = "Écrivez votre origine";
+        }
+        if (!$_POST['section']) {
+            $errors['section'] = "Sélectionnez votre section";
+        }
+
+        return $errors;
     }
 
     private function teacherEdit()
