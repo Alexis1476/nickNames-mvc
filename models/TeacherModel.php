@@ -15,8 +15,9 @@ class TeacherModel extends Model
         $query = "SELECT * FROM t_teacher INNER JOIN t_section ON t_teacher.fkSection = idSection WHERE idTeacher = :idTeacher";
         $binds = ['idTeacher' => ['value' => $id, 'type' => PDO::PARAM_INT]];
         $req = $this->queryPrepareExecute($query, $binds);
+        $teacher = $this->formatData($req);
 
-        return $this->formatData($req);
+        return $teacher[0];
     }
 
     public function insertTeacher($teacherData)

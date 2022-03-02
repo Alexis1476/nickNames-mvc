@@ -58,11 +58,7 @@ abstract class Model
 
     protected function formatData($req)
     {
-        if ($req->rowCount() == 1) {
-            return $req->fetch(PDO::FETCH_ASSOC);
-        } else {
-            return $req->fetchAll(PDO::FETCH_ASSOC);
-        }
+        return $req->fetchAll(PDO::FETCH_ASSOC);
     }
 
     protected function unsetData($req)
