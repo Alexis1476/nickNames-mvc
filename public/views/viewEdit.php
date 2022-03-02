@@ -1,6 +1,6 @@
 <?php $this->_title = "Liste des enseignants"; ?>
 <div class="user-body">
-    <form action="#" method="post">
+    <form action="index.php?controller=teacher&action=submitEdit&idTeacher=<?= $teacher['idTeacher'] ?>" method="post">
         <h3>Ajout d'un enseignant</h3>
         <?php include_once 'templateFormTeacher.php' ?>
         <p>
