@@ -1,24 +1,66 @@
 <?php
 
+/**
+ * Class qui gère la view
+ */
 class View
 {
-    private $_file;
-    private $_title;
+    /**
+     * Controller
+     * @var
+     */
+    private $_controller;
 
-    public function __construct($action)
+    /**
+     * Retourne le controller de la view
+     * @return mixed
+     */
+    public function getController()
     {
-        $this->_file = 'public/views/view' . $action . '.php';
+        return $this->_controller;
     }
 
+    /**
+     * Fichier contenant la page à afficher
+     * @var string
+     */
+    private $_file;
+    /**
+     * Title de la page
+     * @var
+     */
+    private $_title;
+
+    /**
+     * Constructeur par nom de la view et controller
+     * @param $viewName
+     * @param $controller
+     */
+    public function __construct($viewName, $controller)
+    {
+        $this->_file = 'public/views/view' . $viewName . '.php';
+        $this->_controller = $controller;
+    }
+
+    /**
+     * Affiche la page
+     * @param $data
+     * @return void
+     */
     public function displayView($data)
     {
         $content = $this->generateFile($this->_file, $data);
-
         $view = $this->generateFile("public/views/template.php", ['title' => $this->_title, 'content' => $content]);
 
         echo $view;
     }
 
+    /**
+     * Extrait les données des variables se retrouvant dans le fichier $file
+     * @param $file
+     * @param $data
+     * @return Exception|false|string
+     */
     public function generateFile($file, $data)
     {
         if (file_exists($file)) {
@@ -30,7 +72,7 @@ class View
 
             return ob_get_clean();
         } else {
-            throw new Exception('Fichier ' . $file . ' introuvable');
+            return new Exception('Fichier ' . $file . ' introuvable');
         }
     }
 }
