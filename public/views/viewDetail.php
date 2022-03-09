@@ -1,7 +1,8 @@
 <?php $this->_title = "Liste des enseignants"; ?>
 <div class="user-head">
     <h3>Détail : <?= $teacher['teaFirstname'] . ' ' . $teacher['teaName'] ?>
-        <img style="margin-left: 1vw;" height="20em" src="./public/resources/img/<?= $genre ?>.png" alt="male symbole">
+        <img style="margin-left: 1vw;" height="20em" src="./public/resources/img/<?= $genre ?>.png"
+             alt="<?= $genre ?> symbole">
     </h3>
     <p> <?= $teacher['secName'] ?> </p>
     <div class="actions">

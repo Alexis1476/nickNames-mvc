@@ -1,13 +1,13 @@
 <p>
     <input type="hidden" id="id" name="id" value="<?= !isset($_GET['idTeacher']) ? "" : $_GET['idTeacher'] ?>">
     <input type="radio" id="genre1" name="genre"
-           value="M" <?= !isset($teacher) ? "" : ($teacher['teaGender'] == "M" ? "checked" : "") ?>>
+           value="M" <?= !isset($teacher) ? "" : $this->getController()->checkGenderToRadioBtn($teacher, "M"); ?>>
     <label for="genre1">Homme</label>
-    <input type="radio" id="genre2" name="genre" value="F"
-           value="M" <?= !isset($teacher) ? "" : ($teacher['teaGender'] == "F" ? "checked" : "") ?>>
+    <input type="radio" id="genre2" name="genre"
+           value="F" <?= !isset($teacher) ? "" : $this->getController()->checkGenderToRadioBtn($teacher, "F"); ?>>
     <label for="genre2">Femme</label>
     <input type="radio" id="genre3" name="genre"
-           value="A" <?= !isset($teacher) ? "" : ($teacher['teaGender'] == "A" ? "checked" : "") ?>>
+           value="A" <?= !isset($teacher) ? "" : $this->getController()->checkGenderToRadioBtn($teacher, "A"); ?>>
     <label for="genre3">Autre</label>
 </p>
 <p>

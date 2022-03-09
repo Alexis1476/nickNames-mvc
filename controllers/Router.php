@@ -1,17 +1,31 @@
 <?php
 require_once 'public/views/View.php';
 
+/**
+ * Gère les redirections du site
+ */
 class Router
 {
+    /**
+     * Controller
+     * @var
+     */
     private $_controller;
+    /**
+     * @var View
+     */
     private $_view;
 
+    /**
+     * Reçois la requête HTTP et instancie le controller correspondant
+     * @return void
+     */
     public function routeReq()
     {
         try {
             // Remplace le require [Charge les class]
             spl_autoload_register(function ($class) {
-                require_once('models/' . $class . '.php');
+                require_once("models/$class.php");
             });
 
             // Inclure le controller selon l'action
@@ -33,7 +47,7 @@ class Router
             }
         } catch (Exception $e) {
             $errorMsg = $e->getMessage();
-            $this->_view = new View('Error');
+            $this->_view = new View('Error', null);
             $this->_view->displayView(['errorMsg' => $errorMsg]);
         }
     }

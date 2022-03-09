@@ -19,7 +19,7 @@
                 <a href="index.php?controller=teacher&action=edit&idTeacher=<?= $teacher['idTeacher'] ?>">
                     <img height="20em" src="./public/resources/img/edit.png" alt="edit">
                 </a>
-                <a href="index.php?controller=teacher&action=delete&idTeacher=<?= $teacher['idTeacher'] ?>">
+                <a href="javascript:confirmDelete('index.php?controller=teacher&action=delete&idTeacher=<?= $teacher['idTeacher'] ?>')">
                     <img height="20em" src="./public/resources/img/delete.png" alt="delete">
                 </a>
                 <a href="index.php?controller=teacher&action=detail&idTeacher=<?= $teacher['idTeacher'] ?>">
@@ -30,4 +30,5 @@
     <?php endforeach; ?>
     </tbody>
 </table>
+<script src="./public/resources/js/script.js"></script>
 
