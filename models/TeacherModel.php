@@ -1,7 +1,14 @@
 <?php
 
+/**
+ * Permet de gérer les requêtes à la table t_teacher
+ */
 class TeacherModel extends Model
 {
+    /**
+     * Récupère la liste de tous les enseignants de la BD
+     * @return mixed
+     */
     public function getAllTeachers()
     {
         $query = 'SELECT * FROM t_teacher';
@@ -10,6 +17,11 @@ class TeacherModel extends Model
         return $this->formatData($req);
     }
 
+    /**
+     * Récupère la liste des informations pour 1 enseignant
+     * @param $id
+     * @return mixed
+     */
     public function getOneTeacher($id)
     {
         $query = "SELECT * FROM t_teacher INNER JOIN t_section ON t_teacher.fkSection = idSection WHERE idTeacher = :idTeacher";
@@ -20,6 +32,11 @@ class TeacherModel extends Model
         return $teacher[0];
     }
 
+    /**
+     * Permet d'ajouter un enseignant à la base de données
+     * @param $teacherData
+     * @return false|PDOStatement
+     */
     public function insertTeacher($teacherData)
     {
         $query = "INSERT INTO t_teacher (idTeacher, teaFirstname, teaName, teaGender, teaNickname, teaOrigine, fkSection) 
@@ -37,6 +54,11 @@ class TeacherModel extends Model
         return $this->queryPrepareExecute($query, $binds);
     }
 
+    /**
+     * Permet d'effacer un enseignant
+     * @param $id
+     * @return false|PDOStatement
+     */
     public function deleteTeacher($id)
     {
         $query = "DELETE FROM t_teacher WHERE t_teacher.idTeacher = :idTeacher";
@@ -45,6 +67,11 @@ class TeacherModel extends Model
         return $this->queryPrepareExecute($query, $binds);
     }
 
+    /**
+     * Permet de modifier les données d'un enseignant
+     * @param $teacherData
+     * @return false|PDOStatement
+     */
     public function modifyTeacher($teacherData)
     {
         $query = "UPDATE t_teacher SET teaFirstname = :firstName, teaName = :name, teaGender = :genre, teaNickname = :nickName,

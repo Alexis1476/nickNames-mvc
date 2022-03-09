@@ -1,9 +1,20 @@
 <?php
 
+/**
+ * Class abstraite qui permet de faire un singleton PDO
+ */
 abstract class Model
 {
+    /**
+     * Connecteur à la db
+     * @var PDO
+     */
     private static $_connector;
 
+    /**
+     * Lit les donnés de config de la db des fichiers .json
+     * @return mixed Tableau associatif contenant les données de config de la db
+     */
     private static function getDbConfig()
     {
         // Lecture des données de config de la base de données
@@ -17,6 +28,10 @@ abstract class Model
         return $dataConfig;
     }
 
+    /**
+     * Instancie le connecteur PDO
+     * @return void
+     */
     private static function setDb()
     {
         $dataConfig = self::getDbConfig();
@@ -33,6 +48,10 @@ abstract class Model
         }
     }
 
+    /**
+     * Retourne le connecteur PDO
+     * @return PDO
+     */
     protected function getDb()
     {
         // Si la connexion n'est pas instanciée
@@ -40,11 +59,22 @@ abstract class Model
         return self::$_connector;
     }
 
+    /**
+     * Exécute une requête simple
+     * @param $query
+     * @return false|PDOStatement
+     */
     protected function querySimpleExecute($query)
     {
         return $this->getDb()->query($query);
     }
 
+    /**
+     * Permet de préparer, de binder et d’exécuter une requête (select avec where ou insert, update et delete)
+     * @param $query
+     * @param $binds
+     * @return false|PDOStatement
+     */
     protected function queryPrepareExecute($query, $binds)
     {
         $req = $this->getDb()->prepare($query);
@@ -56,11 +86,21 @@ abstract class Model
         return $req;
     }
 
+    /**
+     * Traite les données pour les retourner en tableau associatif (avec FETCH_ASSOC)
+     * @param $req
+     * @return mixed
+     */
     protected function formatData($req)
     {
         return $req->fetchAll(PDO::FETCH_ASSOC);
     }
 
+    /**
+     * Vide le jeu d'enregistrement
+     * @param $req
+     * @return void
+     */
     protected function unsetData($req)
     {
         $req->closeCursor();
